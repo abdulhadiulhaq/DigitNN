@@ -1,3 +1,7 @@
 build/
 *.exe
 *.o
+main1.exe
+2048.exe
+2048.cpp
+main1.c
