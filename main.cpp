@@ -1,19 +1,25 @@
 #include "Matrix.h"
+#include "Layer.h"
 #include <iostream>
 using namespace std;
 
 int main() {
-    Matrix a(2, 3);
-    a.set_element(0, 0, 1); a.set_element(0, 1, 2); a.set_element(0, 2, 3);
-    a.set_element(1, 0, 4); a.set_element(1, 1, 5); a.set_element(1, 2, 6);
+    // Create a layer: 3 neurons, takes 2 inputs
+    Layer l(3, 2);
 
-    Matrix b(3, 2);
-    b.set_element(0, 0, 7); b.set_element(0, 1, 8);
-    b.set_element(1, 0, 9); b.set_element(1, 1, 10);
-    b.set_element(2, 0, 11); b.set_element(2, 1, 12);
+    // Create input matrix (2x1)
+    Matrix input(2, 1);
+    input.set_element(0, 0, 0.5);
+    input.set_element(1, 0, -0.3);
 
-    cout << "A:\n" << a << "\n";
-    cout << "B:\n" << b << "\n";
-    cout << "A*B:\n" << a * b << "\n";
-    cout << "Transpose of A:\n" << a.transpose() << "\n";
+    // Forward pass
+    Matrix z = l.forward(input);
+    cout << "Raw output (z):\n" << z << "\n";
+
+    // Apply activations
+    Matrix a_hidden = l.activate_hidden_layers(z);
+    cout << "After ReLU:\n" << a_hidden << "\n";
+
+    Matrix a_output = l.activate_last_layer(z);
+    cout << "After Sigmoid:\n" << a_output << "\n";
 }

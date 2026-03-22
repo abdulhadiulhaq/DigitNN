@@ -70,3 +70,20 @@ ostream& operator<<(ostream& os, const Matrix& m){
     }
     return os;
 }
+
+Matrix& Matrix::operator=(const Matrix& other){
+    if( this == &other ){
+        return *this;
+    }
+    else{
+        this->set_row(other.get_row());
+        this->set_column(other.get_column());
+        for (int i = 0 ; i < this->get_row() ; i++){
+
+            for (int j = 0 ; j < this->get_column() ; j++){
+                this->set_element( i , j , other.get_matrix_element( i , j ));
+            }
+        }
+    }
+    return *this;
+}

@@ -30,4 +30,6 @@ public:
     Matrix transpose() const;
 
     friend ostream& operator<<(ostream& os, const Matrix& m);
+
+    Matrix& operator=(const Matrix& other);
 };
