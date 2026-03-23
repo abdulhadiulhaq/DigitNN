@@ -11,8 +11,8 @@ class Layer{
         Matrix forward(const Matrix& input) const;
         Matrix activate_hidden_layers(const Matrix& m) const;
         Matrix activate_last_layer(const Matrix& m) const;
-        Matrix get_weights();
-        Matrix get_biases();
+        Matrix& get_weights();
+        Matrix& get_biases();
         int get_current_neurons();
         int get_previous_neurons();
         void set_weights(const Matrix& m);

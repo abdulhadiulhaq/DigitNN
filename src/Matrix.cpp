@@ -1,4 +1,5 @@
 #include "Matrix.h"
+#include <random>
 
 Matrix::Matrix(int rows,int columns) : number_rows(rows),number_columns(columns), data(number_rows,vector<double>(number_columns,0.0)){}
     
@@ -86,4 +87,14 @@ Matrix& Matrix::operator=(const Matrix& other){
         }
     }
     return *this;
+}
+
+void Matrix::randomize(double min, double max) {
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_real_distribution<double> dist(min, max);
+    
+    for (int i = 0; i < number_rows; i++)
+        for (int j = 0; j < number_columns; j++)
+            data[i][j] = dist(gen);
 }

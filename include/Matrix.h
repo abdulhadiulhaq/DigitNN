@@ -32,4 +32,6 @@ public:
     friend ostream& operator<<(ostream& os, const Matrix& m);
 
     Matrix& operator=(const Matrix& other);
+
+    void randomize(double min, double max);
 };

@@ -12,9 +12,9 @@ void Layer::set_current_neurons( int nc ){ current_neurons = nc;}
 
 void Layer::set_previous_neurons( int np ){ previous_neurons = np;}
 
-Matrix Layer::get_biases(){ return biases;}
+Matrix& Layer::get_biases(){ return biases;}
 
-Matrix Layer::get_weights(){ return weights;}
+Matrix& Layer::get_weights(){ return weights;}
 
 int Layer::get_current_neurons(){ return current_neurons;}
 
