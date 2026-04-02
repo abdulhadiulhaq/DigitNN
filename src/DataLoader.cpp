@@ -3,14 +3,6 @@
 #include "Matrix.h"
 using std::ifstream;
 using std::ios;
-// for each image:
-//     create Matrix(784, 1)
-//     for each pixel (784 times):
-//         read 1 byte
-//         normalize: pixel / 255.0
-//         set_element in matrix
-//     push matrix to vector
-// return vector9
 uint32_t reverseBytes(uint32_t n){
     return (n<<24) & (0xFF000000) | (n<<8) & (0x00FF0000) | (n>>8) & (0x0000FF00) | (n>>24) & (0x000000FF);
 }
