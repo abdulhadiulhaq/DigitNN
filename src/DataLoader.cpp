@@ -23,7 +23,7 @@ vector<Matrix> loadImages(string fileName){
         numImages = reverseBytes(numImages);
         rows = reverseBytes(rows);
         cols = reverseBytes(cols);
-        for (int i=0 ; i < 60000 ; i++){
+        for (int i=0 ; i < (int)numImages ; i++){
             Matrix temp(784,1);
             for( int j=0 ; j < 784 ; j++ ){
                 unsigned char pixel;
@@ -49,7 +49,7 @@ vector<int> loadLabels(string fileName){
         file.read((char*)&numLabels, 4);
         magic = reverseBytes(magic);
         numLabels = reverseBytes(numLabels);
-        for ( int i = 0 ; i < 60000; i++){
+        for ( int i = 0 ; i < (int)numLabels ; i++){
             unsigned char label;
             file.read((char*)&label, 1);
             labels.push_back((int)label);

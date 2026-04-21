@@ -35,6 +35,14 @@ Matrix Matrix::operator*(const Matrix& other) const {
     return temp;
 }
 
+Matrix Matrix::operator*(double scalar) const {
+    Matrix temp(number_rows, number_columns);
+    for (int i = 0; i < number_rows; i++)
+        for (int j = 0; j < number_columns; j++)
+            temp.set_element(i, j, data[i][j] * scalar);
+    return temp;
+}
+
 Matrix Matrix::operator+(const Matrix& other) const {
     if(this->get_row()!=other.get_row() || this->get_column()!=other.get_column()){
         throw "[!] Error! Order does not match!\n";
@@ -44,6 +52,21 @@ Matrix Matrix::operator+(const Matrix& other) const {
 
         for(int j=0 ; j<this->get_column() ; j++){
             temp.set_element( i , j , this->get_matrix_element( i , j )+other.get_matrix_element( i , j ));
+
+        }
+    }
+    return temp;
+}
+
+Matrix Matrix::operator-(const Matrix& other) const {
+    if(this->get_row()!=other.get_row() || this->get_column()!=other.get_column()){
+        throw "[!] Error! Order does not match!\n";
+    }
+    Matrix temp(this->get_row(),this->get_column());
+    for(int i=0 ; i<this->get_row() ; i++){
+
+        for(int j=0 ; j<this->get_column() ; j++){
+            temp.set_element( i , j , this->get_matrix_element( i , j )-other.get_matrix_element( i , j ));
 
         }
     }
@@ -73,19 +96,14 @@ ostream& operator<<(ostream& os, const Matrix& m){
 }
 
 Matrix& Matrix::operator=(const Matrix& other){
-    if( this == &other ){
-        return *this;
-    }
-    else{
-        this->set_row(other.get_row());
-        this->set_column(other.get_column());
-        for (int i = 0 ; i < this->get_row() ; i++){
-
-            for (int j = 0 ; j < this->get_column() ; j++){
-                this->set_element( i , j , other.get_matrix_element( i , j ));
-            }
-        }
-    }
+    if(this == &other) return *this;
+    number_rows = other.get_row();
+    number_columns = other.get_column();
+    data.assign(number_rows, vector<double>(number_columns, 0.0));
+    for (int i = 0; i < number_rows; i++)
+        for (int j = 0; j < number_columns; j++)
+            data[i][j] = other.get_matrix_element(i, j);
+    
     return *this;
 }
 
@@ -93,7 +111,6 @@ void Matrix::randomize(double min, double max) {
     std::random_device rd;
     std::mt19937 gen(rd());
     std::uniform_real_distribution<double> dist(min, max);
-    
     for (int i = 0; i < number_rows; i++)
         for (int j = 0; j < number_columns; j++)
             data[i][j] = dist(gen);
