@@ -27,7 +27,7 @@ int main() {
     for ( int e = 0 ; e < epochs ; e++ ){
     double totalLoss= 0.0;
         for ( int i = 0 ; i < 60000 ; i++ ){
-            Matrix expected = oneHot(labels[i]);
+            Matrix expected = oneHot(labels[i]);        // hawww, wut is this one hot?!
             Matrix output = net.forward(images[i]);
             net.train(images[i], expected, lr);
             totalLoss += loss(expected, output);
