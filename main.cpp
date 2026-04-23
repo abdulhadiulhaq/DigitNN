@@ -19,8 +19,8 @@ double loss(const Matrix& expected, const Matrix& actual) {
     return total/diff.get_row();
 }
 int main() {
-    int epochs = 10;
-    Network net({ 784 , 128 , 16 , 10 });
+    int epochs = 50;
+    Network net({ 784 , 128 , 64 , 10 });
     double lr = 0.01;
     vector<Matrix> images = loadImages("../data/train-images.idx3-ubyte");
     vector<int> labels = loadLabels("../data/train-labels.idx1-ubyte");

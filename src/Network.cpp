@@ -1,6 +1,8 @@
 #include "Network.h"
 #include "Layer.h"
 #include "Matrix.h"
+#include <iostream>
+#include <string>
 #include <vector>
 #include <fstream>
 

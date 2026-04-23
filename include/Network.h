@@ -3,8 +3,9 @@
 #include "Layer.h"
 #include <iostream>
 #include <vector>
+#include <string>
 
-using std::vector;
+using namespace std;
 
 class Network{
     public:
