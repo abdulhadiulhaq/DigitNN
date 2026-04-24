@@ -7,8 +7,8 @@ uint32_t reverseBytes(uint32_t n){
     return (n<<24) & (0xFF000000) | (n<<8) & (0x00FF0000) | (n>>8) & (0x0000FF00) | (n>>24) & (0x000000FF);
 }
 
-vector<Matrix> loadImages(string fileName){
-    vector<Matrix> images;
+vector<NN::Matrix> loadImages(string fileName){
+    vector<NN::Matrix> images;
     ifstream file(fileName, ios::binary);
     if(!file.is_open()){
         throw "Unable To Open file!";
@@ -24,7 +24,7 @@ vector<Matrix> loadImages(string fileName){
         rows = reverseBytes(rows);
         cols = reverseBytes(cols);
         for (int i=0 ; i < (int)numImages ; i++){
-            Matrix temp(784,1);
+            NN::Matrix temp(784,1);
             for( int j=0 ; j < 784 ; j++ ){
                 unsigned char pixel;
                 file.read((char*)&pixel, 1);
